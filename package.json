@@ -1,0 +1,11 @@
+{
+  "name": "transit-test",
+  "version": "1.0.0",
+  "description": "display data in d3",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "d3": "3.5.6"
+  },
+  "author": "Lawrence Waller"
+}
