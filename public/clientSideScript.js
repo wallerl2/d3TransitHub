@@ -4,6 +4,7 @@
 
 /* wrote this for a class, comes in handy all the time cause my memory's not fantastic */
 /* AJAX request function that requires response */
+
 function getPageWithCallback(url, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
@@ -15,9 +16,29 @@ function getPageWithCallback(url, callback) {
     httpRequest.send(null);
 }
 
-// b/c I'm not using JQuery, have to originally launch script from HTML or else it won't load properly
-function nullFunc(){
-    mainFunc();
+function nullFunc(whichDataset){
+    var myData = undefined;
+    var myGauss = undefined;
+    var myColorArray = undefined;
+    var colorTransformArray = undefined;
+
+    d3.selectAll('svg').remove();
+
+    var arg1 = "/getDatasetA", arg2 = "/getGausssetA";
+
+    if(whichDataset==='B'){
+        arg1 = "/getDatasetB", arg2 = "/getGausssetB";
+    }
+    else if(whichDataset==='C'){
+        mainFunc(JSON.parse(document.getElementById('input1').value), JSON.parse(document.getElementById('input2').value));
+        return;
+    }
+
+        getPageWithCallback(arg1, function (data) {
+            getPageWithCallback(arg2, function (gauss) {
+                mainFunc(JSON.parse(data), JSON.parse(gauss));
+            });
+        });
 }
 
 function mainFunc(myData, myGauss, colorArray, colorTransformArray) {
@@ -96,20 +117,6 @@ function mainFunc(myData, myGauss, colorArray, colorTransformArray) {
             //references colorArray above for applicable colors
             return colorArray[d[2]];
         });
-
-    /*
-    //event trigger for first svg
-    svg.selectAll("circle").on("click", function(){
-            alert("This point's exact coordinates:"
-                + '\n'
-                + 'x='
-                + d3.select(this).attr("cx")
-                + '\n'
-                + " y="
-                + d3.select(this).attr("cy"));
-        d3.event.stopPropagation();
-    }
-    );*/
 
     svg.append("g").attr("class", "axis").attr("transform", "translate(0," + (h - padding) + ")").call(xAxis);
 

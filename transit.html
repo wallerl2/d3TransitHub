@@ -9,10 +9,7 @@
 </head>
 <body>
     <h1>Basic Transit Example</h1>
-    <script>
-        nullFunc();
-    </script>
-    <br>
+    <hr>
     <cite>Based on a tutorial on d3 axis scaling found at
         <a href="http://alignedleft.com/tutorials/d3/scales">http://alignedleft.com/tutorials/d3/scales</a>
     </cite>
@@ -31,5 +28,19 @@
     </cite>
     <br>
     <small>Designed by Lawrence Waller Nov. 2015</small>
+    <hr>
+    <br>
+    <button onclick="nullFunc('A')">Load Dataset A</button>
+    <button onclick="nullFunc('B')">Load Dataset B</button>
+    <br>
+    <hr>
+    <button onclick="nullFunc('C')">Enter your own Dataset Here!</button>
+    <input id='input1' type="text" style="width: 30%" placeholder="Enter Point Data in this format: [[x1, y1, color1] ... [xn, yn, colorn]]">
+    <input id='input2' type="text" style="width: 30%" placeholder="Enter Gauss Data in this format: [[x1, y1, color1] ... [xn, yn, colorn]]">
+    <br>
+    <hr>
+    <script>
+       // nullFunc('A');
+    </script>
 </body>
 </html>
